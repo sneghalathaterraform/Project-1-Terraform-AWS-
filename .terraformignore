@@ -1,0 +1,23 @@
+# Terraform ignore patterns for HCP Terraform
+.git
+.gitignore
+.terraform
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+*.tfvars.example
+.DS_Store
+*.swp
+*.swo
+*~
+.vscode
+.idea
+*.iml
+.env
+.envrc
+.tool-versions
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json

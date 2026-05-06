@@ -1,5 +1,5 @@
-variable "bucket_name" {
-  description = "S3 bucket name"
+variable "cidr_block" {
+  description = "CIDR block for VPC"
   type        = string
 }
 
@@ -11,4 +11,5 @@ variable "env" {
 variable "project" {
   description = "Project name"
   type        = string
+  default     = "myproject"
 }

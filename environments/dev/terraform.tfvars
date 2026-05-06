@@ -1,6 +1,0 @@
-environment     = "dev"
-aws_region      = "us-east-1"
-project         = "my-project"
-vpc_cidr_block  = "10.0.0.0/16"
-instance_type   = "t3.micro"
-bucket_name     = "my-project-dev-snegha-123"

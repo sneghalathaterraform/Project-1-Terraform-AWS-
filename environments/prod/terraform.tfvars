@@ -1,6 +1,0 @@
-environment     = "prod"
-aws_region      = "us-east-1"
-project         = "my-project"
-vpc_cidr_block  = "10.2.0.0/16"
-instance_type   = "c7i-flex.large"
-bucket_name     = "my-project-prod-snegha-123"

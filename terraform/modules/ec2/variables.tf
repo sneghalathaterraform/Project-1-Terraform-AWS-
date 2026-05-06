@@ -12,6 +12,7 @@ variable "aws_region" {
   description = "AWS region"
   type        = string
 }
+
 variable "iam_instance_profile" {
   description = "IAM instance profile to attach to EC2"
   type        = string
