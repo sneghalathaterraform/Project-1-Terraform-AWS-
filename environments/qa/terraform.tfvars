@@ -1,0 +1,6 @@
+environment     = "qa"
+aws_region      = "us-east-1"
+project         = "my-project"
+vpc_cidr_block  = "10.1.0.0/16"
+instance_type   = "t3.small"
+bucket_name     = "my-project-qa-snegha-123"
