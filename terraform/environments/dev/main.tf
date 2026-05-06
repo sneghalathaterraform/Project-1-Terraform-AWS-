@@ -1,9 +1,10 @@
 module "vpc" {
   source = "../../modules/vpc"
-  
-  cidr_block = var.vpc_cidr_block
-  env        = var.environment
-  project    = var.project
+
+  cidr_block         = var.vpc_cidr_block
+  env                = var.environment
+  project            = var.project
+  enable_nat_gateway = false
 }
 
 module "iam" {

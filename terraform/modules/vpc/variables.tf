@@ -13,3 +13,9 @@ variable "project" {
   type        = string
   default     = "myproject"
 }
+
+variable "enable_nat_gateway" {
+  description = "Create a NAT Gateway for private subnet internet access (set true only in prod)"
+  type        = bool
+  default     = false
+}
