@@ -7,8 +7,9 @@
 .terraform/
 .terraform.lock.hcl
 
-# Variable files with sensitive values
+# Variable files with sensitive values — allow non-sensitive env tfvars
 *.tfvars
+!terraform/environments/**/*.tfvars
 !*.tfvars.example
 
 # Crash log files
