@@ -1,0 +1,87 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Foundation Platform Stack - S3 Bucket and IAM Role
+
+Parameters:
+  Environment:
+    Type: String
+    Default: dev
+    AllowedValues:
+      - dev
+      - staging
+      - prod
+    Description: Deployment environment
+
+  BucketSuffix:
+    Type: String
+    Default: "snegha271009"
+    Description: Unique suffix to make bucket name globally unique
+
+Resources:
+
+  # S3 Bucket
+  FoundationBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "platform-cf-demo-bucket-${BucketSuffix}"
+      Tags:
+        - Key: Project
+          Value: FoundationPlatform
+        - Key: Environment
+          Value: !Ref Environment
+      VersioningConfiguration:
+        Status: Enabled
+
+  # IAM Role
+  FoundationIAMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "platform-cf-role-${Environment}"
+      Description: IAM Role for Foundation Platform
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ec2.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: S3ReadPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:ListBucket
+                Resource:
+                  - !GetAtt FoundationBucket.Arn
+                  - !Sub "${FoundationBucket.Arn}/*"
+      Tags:
+        - Key: Project
+          Value: FoundationPlatform
+        - Key: Environment
+          Value: !Ref Environment
+
+
+Outputs:
+  BucketName:
+    Description: Name of the S3 bucket
+    Value: !Ref FoundationBucket
+    Export:
+      Name: !Sub "${AWS::StackName}-BucketName"
+
+  BucketArn:
+    Description: ARN of the S3 bucket
+    Value: !GetAtt FoundationBucket.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-BucketArn"
+
+  IAMRoleArn:
+    Description: ARN of the IAM Role
+    Value: !GetAtt FoundationIAMRole.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-IAMRoleArn"
+
+  IAMRoleName:
+    Description: Name of the IAM Role
+    Value: !Ref FoundationIAMRole
